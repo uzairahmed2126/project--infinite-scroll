@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: #0005;
+}
+#main-container {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 40px;
+    margin: 50px;
+}
+.boxes {
+    padding: 80px;
+    height: 200px;
+    gap: 50px;
+    background: gray;
+    box-shadow: 2px 5px 9px;
+}
