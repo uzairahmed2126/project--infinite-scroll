@@ -11,11 +11,12 @@ body{
     grid-template-columns: repeat(3,1fr);
     gap: 40px;
     margin: 50px;
+    font-size: 30px;
+    align-items: center;
+    text-align: center;
 }
-.boxes {
-    padding: 80px;
-    height: 200px;
+.images {
+    color: black;
     gap: 50px;
-    background: gray;
     box-shadow: 2px 5px 9px;
 }
