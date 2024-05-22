@@ -159,14 +159,8 @@
 document.addEventListener("DOMContentLoaded", (event) => {
   const mainContainer = document.getElementById("main-container");
   const domFragment = document.createDocumentFragment();
-  const imagesClass = document.getElementsByClassName(".images");
-  const yesBtn = document.getElementsByClassName("yes");
-  const noBtn = document.getElementsByClassName("no");
-  const divContainer = document.getElementById("div-container");
   let arr = [];
   function scrollFunctinality() {
-    let Imagecount = 0;
-
     for (let i = 1; i <= 9; i++) {
       const randomImage = Math.floor(Math.random(i) * 1000);
       const images = createEl(
@@ -176,7 +170,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         "images",
         domFragment
       );
-      Imagecount++;
       arr.push(images.src);
     }
     mainContainer.append(domFragment);
@@ -190,21 +183,33 @@ document.addEventListener("DOMContentLoaded", (event) => {
   function handleClickEvent(event) {
     event.preventDefault();
     const target = event.target;
+    if (!target.tagName === "BODY") {
+      return;
+    } else if (target.tagName === "IMG") {
+      let div = document.createElement("div");
+      let selectedImg = document.createElement("img");
+      selectedImg.className = "img";
+      selectedImg.src = target.src;
+      console.log(target.src);
+      div.append(selectedImg);
+      document.body.append(div);
+    }
     const sliderContainer = document.querySelector(".slider-container");
     const closeBtn = document.querySelector(".fa-xmark");
     const selectedImg = document.querySelector(".selected-img");
     const divContainer = document.getElementById("div-container");
     const promptContainer = document.querySelector(".prompt-container");
-    const leftButton = document.querySelector("fa-chevron-left");
-    const rightButton = document.querySelector("fa-chevron-right");
+    const leftButton = document.querySelector(".fa-chevron-left");
+    const rightButton = document.querySelector(".fa-chevron-right");
     mainContainer.classList.add("remove-pointer");
-    function showImageOnClick() {
-      let result;
+    function showImageOnClick(result) {
+      // let result;
       for (let i = 0; i < arr.length; i++) {
         if (target.src === arr[i]) {
           result = arr[i];
         }
       }
+      console.log(result);
       return result;
     }
     switch (target.tagName) {
@@ -269,3 +274,22 @@ document.addEventListener("DOMContentLoaded", (event) => {
   events(window, "scroll", handleScrollEvent);
   events(mainContainer, "click", handleClickEvent);
 });
+
+// let a = [
+//   "https://picsum.photos/seed/picsum302/400/350",
+//   "https://picsum.photos/seed/picsum303/400/350",
+//   "https://picsum.photos/seed/picsum304/400/350",
+//   "https://picsum.photos/seed/picsum305/400/350",
+//   "https://picsum.photos/seed/picsum306/400/350",
+//   "https://picsum.photos/seed/picsum307/400/350",
+//   "https://picsum.photos/seed/picsum308/400/350",
+// ];
+// for (let i = 0; i < a.length; i++) {
+//   let images = document.createElement("img");
+//   images.src = a[i];
+//   document.body.append(images);
+// }
+// function handleClick(event) {
+//   console.log(target.tagName);
+// }
+// document.addEventListener("click", handleClick);
